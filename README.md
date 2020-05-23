@@ -1,4 +1,4 @@
-# traaitt XTEdition
+# traaitt Enterprise XTEdition
 
 ![Download Count](https://img.shields.io/github/downloads/TRRXITTE/traaittEnterpriseXTEdition/total.svg)
 ![Version](https://img.shields.io/github/v/release/TRRXITTE/traaittEnterpriseXTEdition)
