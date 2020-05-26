@@ -444,7 +444,7 @@ eventEmitter.on('handleOpen', handleOpen);
 
 function handleAbout() {
   remote.shell.openExternal(
-    'http://github.com/turtlecoin/turtle-wallet-proton#readme'
+    'http://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme'
   );
 }
 
@@ -454,7 +454,7 @@ function handleHelp() {
 
 function handleIssues() {
   remote.shell.openExternal(
-    'https://github.com/turtlecoin/turtle-wallet-proton/issues'
+    'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
   );
 }
 

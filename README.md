@@ -5,7 +5,7 @@
 
 ### Master Build Status
 
-![Master Build Status](https://github.com/turtlecoin/turtle-wallet-proton/workflows/Build%20Proton/badge.svg?branch=master)
+![Master Build Status](https://github.com/TRRXITTE/traaittEnterpriseXTEdition/workflows/Build%20Proton/badge.svg?branch=master)
 
 #### traaitt Enterprise XTEdition: [official GitHub Download](https://GitHub.com/TRRXITTE/traaittEnterpriseXTEdition/releases)
 <img src="https://github.com/TRRXITTE/traaittEnterpriseXTEdition/blob/master/screenshots/screenshot.png">

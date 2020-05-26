@@ -55,7 +55,7 @@ export default class MenuBuilder {
           label: `${il8n.about} ${productName}`,
           click: () => {
             shell.openExternal(
-              'http://github.com/turtlecoin/turtle-wallet-proton#readme'
+              'http://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme'
             );
           }
         },
@@ -248,7 +248,7 @@ export default class MenuBuilder {
           label: il8n.report_bug,
           click() {
             shell.openExternal(
-              'https://github.com/turtlecoin/turtle-wallet-proton/issues'
+              'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
             );
           }
         },
@@ -256,7 +256,7 @@ export default class MenuBuilder {
           label: il8n.feature_request,
           click() {
             shell.openExternal(
-              'https://github.com/turtlecoin/turtle-wallet-proton/issues'
+              'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
             );
           }
         }
@@ -468,7 +468,7 @@ export default class MenuBuilder {
             label: il8n.about,
             click: () => {
               shell.openExternal(
-                'http://github.com/turtlecoin/turtle-wallet-proton#readme'
+                'http://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme'
               );
             }
           },
@@ -476,7 +476,7 @@ export default class MenuBuilder {
             label: il8n.report_bug,
             click: () => {
               shell.openExternal(
-                'https://github.com/turtlecoin/turtle-wallet-proton/issues'
+                'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
               );
             }
           },
@@ -484,7 +484,7 @@ export default class MenuBuilder {
             label: il8n.feature_request,
             click: () => {
               shell.openExternal(
-                'https://github.com/turtlecoin/turtle-wallet-proton/issues'
+                'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
               );
             }
           }
