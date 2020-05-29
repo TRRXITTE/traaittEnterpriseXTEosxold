@@ -8,7 +8,7 @@ import jdenticon from 'jdenticon';
 import {
   validateAddress,
   validatePaymentID
-} from 'turtlecoin-wallet-backend/dist/lib/ValidateParameters';
+} from 'traaitt-wallet-backend/dist/lib/ValidateParameters';
 import NavBar from './NavBar';
 import BottomBar from './BottomBar';
 import Redirector from './Redirector';
