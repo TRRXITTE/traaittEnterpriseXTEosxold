@@ -9061,9 +9061,9 @@ moment-duration-format-commonjs@^1.0.0:
   integrity sha512-MVFR4hIh4jfuwSCPBEE5CCwn3refvTsxK/Yv/DpKJ6YcNnCimlVJ6DQeTJG1KVQPw1o8m3tkbHE9gVjivyv9iA==
 
 moment@^2.10.3, moment@^2.14.1:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
+  integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
 
 moo@^0.4.3:
   version "0.4.3"
@@ -13286,6 +13286,19 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
+traaitt-wallet-backend@^5.0.0:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/traaitt-wallet-backend/-/traaitt-wallet-backend-5.0.5.tgz#c5974475970827346c21a3f90d349430d7e5b0d9"
+  integrity sha512-YblNL3ZIkI2f9K4gA0zNYM6PkfW4tUuMsUmO1pvt1cCfRb9pjnVyRGggaaPD2W6rF1pEQ01IDCXkreWBihn9SQ==
+  dependencies:
+    lodash "^4.17.15"
+    object-sizeof "^1.5.2"
+    pbkdf2 "^3.0.17"
+    request "^2.88.0"
+    request-promise-native "^1.0.8"
+    turtlecoin-utils "1.0.20"
+    typescript "^3.7.2"
+
 tree-kill@^1.1.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.1.tgz#5398f374e2f292b9dcc7b2e71e30a5c3bb6c743a"
@@ -13378,19 +13391,6 @@ turtlecoin-utils@1.0.20:
     varint "^5.0.0"
   optionalDependencies:
     turtlecoin-crypto "^3.1.3"
-
-turtlecoin-wallet-backend@^5.0.0:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/turtlecoin-wallet-backend/-/turtlecoin-wallet-backend-5.0.4.tgz#43f37719f56ec3184a3061d33434bda1f3a4856d"
-  integrity sha512-CvKOctuxDPHz4pwd/Lz3jHMjCXs31WweP5MKMELm6bY7ZSa14qWk+ZY1e3HLHO1x2bNsjzpZeCM5H5P20qgaRA==
-  dependencies:
-    lodash "^4.17.15"
-    object-sizeof "^1.5.2"
-    pbkdf2 "^3.0.17"
-    request "^2.88.0"
-    request-promise-native "^1.0.8"
-    turtlecoin-utils "1.0.20"
-    typescript "^3.7.2"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
