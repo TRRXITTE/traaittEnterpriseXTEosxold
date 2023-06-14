@@ -1,8 +1,8 @@
 {
-  "name": "traaittEnterpriseXTEdition",
-  "productName": "traaitt Enterprise XTE Edition",
+  "name": "traaittEnterpriseXTE",
+  "productName": "traaittEnterprise XTE",
   "version": "2.0.3",
-  "description": "traaitt Enterprise XTE Edition",
+  "description": "traaittEnterprise XTE",
   "scripts": {
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
@@ -46,8 +46,8 @@
   },
   "main": "./app/main.prod.js",
   "build": {
-    "productName": "traaitt Enterprise XTEdition",
-    "appId": "wallet.traaittXTEdition",
+    "productName": "traaittEnterprise XTE",
+    "appId": "wallet.traaittEnterpriseXTE",
     "files": [
       "app/dist/",
       "app/mainWindow/app.html",
@@ -93,8 +93,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "ExtraHash",
-      "repo": "proton",
+      "owner": "TRRXTTE Int., incorporate",
+      "repo": "traaittEnterpriseXTEdition",
       "private": false
     }
   },
@@ -103,19 +103,19 @@
     "url": "git+https://github.com/TRRXITTE/traaittEnterpriseXTEdition.git"
   },
   "author": {
-    "name": "ExtraHash",
-    "email": "extrahash@protonmail.com",
-    "url": "http://getproton.org"
+    "name": "TRRXITTE Int., incorporate",
+    "email": "integration@trrxitte.com",
+    "url": "http://trrxitte.com"
   },
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues"
   },
   "keywords": [
-    "turtlecoin",
+    "traaitt",
     "gui wallet",
     "electron",
-    "proton"
+    "xte"
   ],
   "homepage": "https://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme",
   "jest": {
@@ -261,7 +261,7 @@
     "semver": "^6.2.0",
     "source-code-pro": "^2.30.2",
     "tail": "^2.0.3",
-    "traaitt-wallet-backend": "^5.0.0"
+    "traaitt-wallet-backend": "^5.4.4"
   },
   "devEngines": {
     "node": ">=10.x",
