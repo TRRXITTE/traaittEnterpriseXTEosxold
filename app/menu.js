@@ -5,11 +5,10 @@ import { app, Menu, shell, BrowserWindow } from 'electron';
 import log from 'electron-log';
 import LocalizedStrings from 'react-localization';
 import npmPackage from '../package.json';
-import { messageRelayer } from './main.dev';
 
 export const il8n = new LocalizedStrings({
   // eslint-disable-next-line global-require
-  en: require('./mainWindow/il8n/en-menu.json')
+  en: require('./il8n/en-menu.json')
 });
 
 const { version: currentVersion } = npmPackage;
@@ -17,8 +16,6 @@ const { productName } = npmPackage;
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
-
-  backendWindow: BrowserWindow;
 
   constructor(mainWindow: BrowserWindow) {
     this.mainWindow = mainWindow;
@@ -55,7 +52,7 @@ export default class MenuBuilder {
           label: `${il8n.about} ${productName}`,
           click: () => {
             shell.openExternal(
-              'http://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme'
+              'http://github.com/trrxitte/traaittplatformenterprise#readme'
             );
           }
         },
@@ -241,14 +238,14 @@ export default class MenuBuilder {
         {
           label: il8n.support,
           click() {
-            shell.openExternal('https://discord.gg/P7urHQs');
+            shell.openExternal('https://discord.gg/WQ572Ns');
           }
         },
         {
           label: il8n.report_bug,
           click() {
             shell.openExternal(
-              'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
+              'https://github.com/trrxitte/traaittplatformenterprise/issues'
             );
           }
         },
@@ -256,7 +253,7 @@ export default class MenuBuilder {
           label: il8n.feature_request,
           click() {
             shell.openExternal(
-              'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
+              'https://github.com/trrxitte/traaittplatformenterprise/issues'
             );
           }
         }
@@ -288,7 +285,7 @@ export default class MenuBuilder {
   }
 
   handleSave() {
-    messageRelayer.sendToBackend('saveWallet', true);
+    this.mainWindow.webContents.send('handleSave');
   }
 
   handleOpen() {
@@ -468,7 +465,7 @@ export default class MenuBuilder {
             label: il8n.about,
             click: () => {
               shell.openExternal(
-                'http://github.com/TRRXITTE/traaittEnterpriseXTEdition#readme'
+                'http://github.com/trrxitte/traaittplatformenterprise#readme'
               );
             }
           },
@@ -476,7 +473,7 @@ export default class MenuBuilder {
             label: il8n.report_bug,
             click: () => {
               shell.openExternal(
-                'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
+                'https://github.com/trrxitte/traaittplatformenterprise/issues'
               );
             }
           },
@@ -484,7 +481,7 @@ export default class MenuBuilder {
             label: il8n.feature_request,
             click: () => {
               shell.openExternal(
-                'https://github.com/TRRXITTE/traaittEnterpriseXTEdition/issues'
+                'https://github.com/trrxitte/traaittplatformenterprise/issues'
               );
             }
           }

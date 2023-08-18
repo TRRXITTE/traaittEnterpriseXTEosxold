@@ -13,13 +13,13 @@
 
 - Adds a new method of making new wallets, which is much more interactive, and ensures the user backs up their seed before they use their wallet.
 - Adds an addressbook.
-- Makes several updates to the send form to integrate with the new address book. You can now enter a contact name or turtlecoin address in the send field, and it will autosuggest matching contacts as you type.
+- Makes several updates to the send form to integrate with the new address book. You can now enter a contact name or traaittplatform address in the send field, and it will autosuggest matching contacts as you type.
 - Adds a search feature. Currently you can search contacts (name or address), transactions (hash, block height, or payment ID), and settings (name, description, or keywords).
 - Fixes a bug that would cause the wallet syncing to slow drastically when window was hidden or minimized.
 - Fixes a bug that would cause the user to be unable to backup the wallet if it was a non-deterministic wallet.
 - Fixes a but that would allow exporting transactions as CSV when the wallet was locked.
 - Switches the node changer to use the built in swapNode() method.
-- Removes the ability to actually launch the TurtleCoind process, but still allows tailing a log file: I found that actually having Proton launch the child process itself was not the functionality I was really looking for, I was just looking to be able to view my terminal output in Proton for both the daemon and the backend. So, I removed the launching of the process, but it still allows you to set a log file location and view the tail of the text file in the Terminal tab.
+- Removes the ability to actually launch the traaittplatformd process, but still allows tailing a log file: I found that actually having Proton launch the child process itself was not the functionality I was really looking for, I was just looking to be able to view my terminal output in Proton for both the daemon and the backend. So, I removed the launching of the process, but it still allows you to set a log file location and view the tail of the text file in the Terminal tab.
 - Switches to GitHub actions for push and PR building / release deployment rather than using travis (much faster, windows build is ~6 min compared to almost 30)
 
 ## v1.0.0
@@ -37,13 +37,13 @@
 
 Also, following this release, Proton will be moving to a **monthly release cycle**. We will have a new version out W1 of each month for you to download, so no more of these incredibly frequent update notifications (apologies if they've been bothersome).
 
-Thanks TurtleCoin community, and please enjoy the new version!
+Thanks traaittplatform community, and please enjoy the new version!
 
 ## v0.0.28
 
 - introduces a non-blocking in-window 'modal' component which replaces all native (thread blocking) dialogs
-- adds a local daemon mode which can be enabled in settings (you must provide a path to turtlecoind)
-- upgrades traaitt-wallet-backend for some transaction bugfixes
+- adds a local daemon mode which can be enabled in settings (you must provide a path to traaittplatformd)
+- upgrades traaittcash-wallet-backend for some transaction bugfixes
 - adds some additional dev-only testing actions
 - pulls in source code pro for monospace font on all OS
 
@@ -59,7 +59,7 @@ Thanks TurtleCoin community, and please enjoy the new version!
 - ability to disable and configure the time of the autolock (in the settings menu)
 - ability to display transactions in fiat value (click on your balance on the bottom right)
 - completely redesigned settings menu
-- "find node" link updated to the new official TurtleCoin node finder (https://explorer.turtlecoin.lol/nodes.html)
+- "find network" https://interface.traaittcash.com/nodes.html
 - some various UI improvements
 - updated to latest version of wallet-backend
 - "test" transaction button for developers (sends a transaction between 0.01 - 1.00 with a fee of 0.1 and a random payment ID to the primary wallet addresss)
@@ -94,7 +94,7 @@ This is a pretty big release, cleaning up the codebase and making it look much n
 ## v0.0.23
 
 - finishes rewind feature (before you could only press the button to rewind ~day, i forgot to finish the user input height)
-- bumps traaitt-wallet-backend version
+- bumps traaittcash-wallet-backend version
 - fixes AppImage system icon not working
 - now closes to system tray instead of closing completely on X
 
@@ -103,7 +103,7 @@ This is a pretty big release, cleaning up the codebase and making it look much n
 - updated balance widget to include visual difference when some of the balance is locked as well as a mouseover event that shows locked / unlocked bal
 - conditional validation for the transaction dialog box
 - fixes a bug that would cause the historical and balance to be incorrectly displayed when a portion of the balane was locked
-- bumps traaitt-wallet-backend
+- bumps traaittcash-wallet-backend
 - fixes the send field allowing negative numbers
 - fixes a bug that would cause the send field to add wrong (eg 1 + 0.1 = 1.11)
 - adds aarmv7 / arm64 support
@@ -126,7 +126,7 @@ This is a pretty big release, cleaning up the codebase and making it look much n
 - sends a native OS notification when you receive a transaction
 - implements an automatic save every few minutes if the wallet is left running
 - windows now has a configurable installer which allows installation in a custom directory or for all users (all users requires administrative permissions)
-- traaitt-wallet-backend-js version upgraded, now connects to daemon with KeepAlive = true
+- traaittcash-wallet-backend-js version upgraded, now connects to daemon with KeepAlive = true
 - fixes copy + paste on MacOS
 - various UI improvements
 
@@ -145,7 +145,7 @@ This is a pretty big release, cleaning up the codebase and making it look much n
 
 ## v0.0.15
 
-- bumps traaitt-wallet-backend-js dependency to latest version
+- bumps traaittcash-wallet-backend-js dependency to latest version
 - hides the navigation when no wallet is open
 - redirects to the main Wallet page any time after opening a new wallet
 - various bug fixes
@@ -156,7 +156,7 @@ This is a pretty big release, cleaning up the codebase and making it look much n
 
 ## v0.0.13
 
-- upgrade the traaitt-wallet-backend dependency to fix a bug that was caused by a batch of blocks in the ~200k range, also no longer checks for an update in development mode
+- upgrade the traaittcash-wallet-backend dependency to fix a bug that was caused by a batch of blocks in the ~200k range, also no longer checks for an update in development mode
 
 ## v0.0.12
 

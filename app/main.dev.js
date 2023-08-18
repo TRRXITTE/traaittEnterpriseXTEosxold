@@ -4,7 +4,6 @@
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
-import { EventEmitter } from 'events';
 import {
   app,
   BrowserWindow,
@@ -18,15 +17,8 @@ import isDev from 'electron-is-dev';
 import log from 'electron-log';
 import contextMenu from 'electron-context-menu';
 import MenuBuilder from './menu';
-import iConfig from './mainWindow/constants/config';
+import iConfig from './constants/config';
 import packageInfo from '../package.json';
-import MessageRelayer from './MessageRelayer';
-
-const windowEvents = new EventEmitter();
-
-export let messageRelayer = null;
-
-let quitTimeout = null;
 
 /** disable background throttling so our sync
  *   speed doesn't crap out when minimized
@@ -40,13 +32,10 @@ let tray = null;
 let trayIcon = null;
 let config = null;
 const homedir = os.homedir();
-let frontendReady = false;
-let backendReady = false;
-let configReady = false;
 
 const directories = [
-  `${homedir}/.traaittXTEEdition`,
-  `${homedir}/.traaittXTEEdition/logs`
+  `${homedir}/.traaittEnterpriseXTE`,
+  `${homedir}/.traaittEnterpriseXTE/logs`
 ];
 
 const [programDirectory] = directories;
@@ -71,12 +60,6 @@ if (fs.existsSync(`${programDirectory}/config.json`)) {
     // if it isn't, set the internal config to the user config
     config = iConfig;
   }
-  configReady = true;
-  if (frontendReady && backendReady) windowEvents.emit('bothWindowsReady');
-} else {
-  config = iConfig;
-  configReady = true;
-  if (frontendReady && backendReady) windowEvents.emit('bothWindowsReady');
 }
 
 if (fs.existsSync(`${programDirectory}/addressBook.json`)) {
@@ -99,7 +82,7 @@ if (fs.existsSync(`${programDirectory}/addressBook.json`)) {
   fs.writeFileSync(`${programDirectory}/addressBook.json`, '[]');
 }
 
-const daemonLogFile = path.resolve(directories[1], 'TurtleCoind.log');
+const daemonLogFile = path.resolve(directories[1], 'traaittplatformd.log');
 const backendLogFile = path.resolve(directories[1], 'wallet-backend.log');
 fs.closeSync(fs.openSync(daemonLogFile, 'w'));
 
@@ -114,9 +97,9 @@ if (config) {
 }
 
 if (os.platform() !== 'win32') {
-  trayIcon = path.join(__dirname, './mainWindow/images/icon_color_64x64.png');
+  trayIcon = path.join(__dirname, 'images/icon_color_64x64.png');
 } else {
-  trayIcon = path.join(__dirname, './mainWindow/images/icon.ico');
+  trayIcon = path.join(__dirname, 'images/icon.ico');
 }
 
 if (os.platform() === 'darwin') {
@@ -124,7 +107,6 @@ if (os.platform() === 'darwin') {
 }
 
 let mainWindow = null;
-let backendWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line global-require
@@ -132,7 +114,13 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-require('electron-debug')();
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.DEBUG_PROD === 'true'
+) {
+  // eslint-disable-next-line global-require
+  require('electron-debug')();
+}
 
 const installExtensions = async () => {
   // eslint-disable-next-line global-require
@@ -184,9 +172,9 @@ contextMenu({
       visible: params.selectionText.trim().length === 64,
       click: () => {
         shell.openExternal(
-          `https://explorer.turtlecoin.lol/?search=${encodeURIComponent(
+          `https://interface.traaittcash.com/transaction.html?hash=${encodeURIComponent(
             params.selectionText
-          )}`
+          )}#blockchain_transaction`
         );
       }
     },
@@ -217,29 +205,26 @@ contextMenu({
 });
 
 app.on('ready', async () => {
-  await installExtensions();
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
+  ) {
+    await installExtensions();
+  }
 
   mainWindow = new BrowserWindow({
-    title: `traaitt Enterprise XTEdition v${version}`,
+    title: `traaittEnterprise XTE ${version}`,
     useContentSize: true,
     show: false,
-    width: 1250,
-    height: 625,
-    minWidth: 1250,
-    minHeight: 625,
+    width: 1200,
+    height: 624,
+    minWidth: 1200,
+    minHeight: 624,
     backgroundColor: '#121212',
     icon: path.join(__dirname, 'images/icon.png'),
     webPreferences: {
       nativeWindowOpen: true,
       nodeIntegrationInWorker: true,
-      nodeIntegration: true
-    }
-  });
-
-  backendWindow = new BrowserWindow({
-    show: false,
-    frame: false,
-    webPreferences: {
       nodeIntegration: true
     }
   });
@@ -261,8 +246,7 @@ app.on('ready', async () => {
           label: 'Quit',
           click() {
             isQuitting = true;
-            quitTimeout = setTimeout(app.exit, 1000 * 10);
-            messageRelayer.sendToBackend('stopRequest');
+            app.quit();
           }
         }
       ])
@@ -271,15 +255,12 @@ app.on('ready', async () => {
     tray.on('click', () => showMainWindow());
   }
 
-  mainWindow.loadURL(`file://${__dirname}/mainWindow/app.html`);
-  backendWindow.loadURL(`file://${__dirname}/backendWindow/app.html`);
+  mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   mainWindow.webContents.on('did-finish-load', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
-    frontendReady = true;
-    if (backendReady && configReady) windowEvents.emit('bothWindowsReady');
     if (process.env.START_MINIMIZED) {
       mainWindow.minimize();
     } else {
@@ -288,30 +269,18 @@ app.on('ready', async () => {
     }
   });
 
-  backendWindow.webContents.on('did-finish-load', () => {
-    if (!backendWindow) {
-      throw new Error('"backendWindow" is not defined');
-    }
-    backendReady = true;
-    if (frontendReady && configReady) windowEvents.emit('bothWindowsReady');
-    log.debug('Backend window finished loading.');
-  });
-
   mainWindow.on('close', event => {
     event.preventDefault();
     if (!isQuitting && mainWindow) {
       log.debug('Closing to system tray or dock.');
       mainWindow.hide();
-    } else {
-      isQuitting = true;
-      quitTimeout = setTimeout(app.exit, 1000 * 10);
-      messageRelayer.sendToBackend('stopRequest');
+    } else if (mainWindow) {
+      mainWindow.webContents.send('handleClose');
     }
   });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
-    backendWindow = null;
   });
 
   mainWindow.on('unresponsive', () => {
@@ -319,7 +288,7 @@ app.on('ready', async () => {
     const userSelection = dialog.showMessageBox(mainWindow, {
       type: 'error',
       buttons: ['Kill', `Don't Kill`],
-      title: 'Unresponsive Application',
+      title: 'Unresponse Application',
       message: 'The application is unresponsive. Would you like to kill it?'
     });
     if (userSelection === 0) {
@@ -346,22 +315,8 @@ function showMainWindow() {
   }
 }
 
-windowEvents.on('bothWindowsReady', () => {
-  messageRelayer = new MessageRelayer(mainWindow, backendWindow);
-  messageRelayer.sendToBackend('config', config);
-  messageRelayer.sendToFrontend('config', {
-    config,
-    configPath: directories[0]
-  });
-});
-
 ipcMain.on('closeToTrayToggle', (event: any, state: boolean) => {
   toggleCloseToTray(state);
-});
-
-ipcMain.on('backendStopped', () => {
-  clearTimeout(quitTimeout);
-  app.exit();
 });
 
 function toggleCloseToTray(state: boolean) {
